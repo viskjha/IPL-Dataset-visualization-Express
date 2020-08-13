@@ -15,7 +15,6 @@ app.get('/economy', (req, res) => {
     res.json(data['economyBowlers'][year])
 })
 
-// const hostname = 'localhost'
 app.use(
     cors({
         credentials: true,
