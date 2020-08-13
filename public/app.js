@@ -1,17 +1,15 @@
-function fetchAndVisualizeData() {
-  fetch("./data.json")
-    .then(r => r.json())
-    .then(visualizeData);
-}
+// 1st start
+// 1st end
 
-fetchAndVisualizeData();
 
-function visualizeData(data) 
-{
-  visualizeEconomyBowlers(data.economyBowlers[2015])
-  return;
-}
+// 2nd start
+// 2nd end
 
+// 3rd start
+// 3rd end
+
+
+// 4th start
 var year
 const form = document.querySelector('form')
 form.addEventListener('submit', (e)=>{
@@ -20,29 +18,18 @@ form.addEventListener('submit', (e)=>{
   e.preventDefault()
   fetch(`/economy?year=${year}`)
     .then(data => data.json())
-    .then(visualizeCustomData)
+    .then(visualizeData4)
 })
 
-// var year
-// const form = document.querySelector('form')
-// form.addEventListener('submit', (e)=>{
-//   year = form.elements.year.value
-//   //console.log(form.elements.year.value)
-//   e.preventDefault()
-//   fetch("./data.json")
-//     .then(data => data.json())
-//     .then(visualizeCustomData)
-// })  data.economyBowlers[year], year
-
-function visualizeCustomData(data)
+function visualizeData4(data)
 {
-  document.querySelector("#custom-economy-bowlers").innerHTML="", visualizeCustomEconomyBowlers(data, year)
+  document.querySelector("#economy-bowlers").innerHTML="", visualizeEconomyBowlers(data, year)
   return;
 }
 
-function visualizeCustomEconomyBowlers(data, year)
+function visualizeEconomyBowlers(data, year)
 {
-  Highcharts.chart("custom-economy-bowlers", {
+  Highcharts.chart("economy-bowlers", {
     chart: {
       type: "column"
     },
@@ -70,39 +57,66 @@ function visualizeCustomEconomyBowlers(data, year)
     ]
   });
 }
+// 4th end
 
 
 
-
-
-function visualizeEconomyBowlers(data)
-{
-  Highcharts.chart("economy-bowlers", {
-    chart: {
-      type: "column"
-    },
-    title: {
-      text: "Top 10 economical bowlers of 2015"
-    },
-    subtitle: {
-      text:
-        'Source: <a href="https://www.kaggle.com/nowke9/ipldata/data">IPL Dataset</a>'
-    },
-    xAxis: {
-      type: "category"
-    },
-    yAxis: {
-      min: 0,
-      title: {
-        text: "Economy"
-      }
-    },
-    series: [
-      {
-        name: "Economy",
-        data: data
-      }
-    ]
-  });
+// 5th start
+// Discuss a "Story" you want to tell with the given data.
+function fetchAndVisualizeData5() {
+  fetch("./data_fifth.json")
+    .then(r => r.json())
+    .then(visualizeData5);
 }
 
+fetchAndVisualizeData5();
+
+function visualizeData5(datafifth) {
+  visualizematchesStory(datafifth.matchesStory);
+  return;
+}
+
+function visualizematchesStory(matchesStory) {
+  const seriesDataFifth = [];
+  for (let sto in matchesStory) {
+    seriesDataFifth.push([sto, matchesStory[sto]]);
+  }
+
+  // console.log(seriesDataFifth);
+
+  Highcharts.chart('matches-story', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: '5. Win by all the Teams'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: seriesDataFifth
+    }]
+  });
+}
+// 5th end

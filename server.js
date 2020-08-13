@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 var cors = require('cors');
-const data = require('./public/data.json')
+const data = require('./public/data_four.json')
 
 app.use(express.static(__dirname+'/public'));
 
