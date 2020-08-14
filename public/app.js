@@ -213,7 +213,7 @@ function visualizeextrarunsconcededbyeach(extraRunsConcededByEach) {
 
 
 // 4th start
-var year
+let year
 const form = document.querySelector('form')
 form.addEventListener('submit', (e)=>{
   year = form.elements.year.value
