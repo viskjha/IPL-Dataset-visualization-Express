@@ -219,7 +219,7 @@ form.addEventListener('submit', (e)=>{
   year = form.elements.year.value
   //console.log(form.elements.year.value)
   e.preventDefault()
-  fetch(`/economy?year=${year}`)
+  fetch(`/economy?${year}`)
     .then(data => data.json())
     .then(visualizeData4)
 })
